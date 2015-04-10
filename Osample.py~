@@ -26,12 +26,11 @@ import oauth2
 
 
 API_HOST = 'api.yelp.com'
-DEFAULT_TERM = 'dinner'
-DEFAULT_LOCATION = 'San Francisco, CA'
-SEARCH_LIMIT = 5
+DEFAULT_TERM = ''
+DEFAULT_LOCATION = 'Mission District, San Francisco, CA'
+SEARCH_LIMIT = 20
 SEARCH_PATH = '/v2/search/'
 BUSINESS_PATH = '/v2/business/'
-bounds='37.748060,-122.424754'|'37.768723,-122.406472'
 
 # OAuth credential placeholders that must be filled in by users.
 CONSUMER_KEY = 'YHCrqm_IqYkgHPBqo9EQxg'
@@ -82,27 +81,7 @@ def request(host, path, url_params=None):
 
     return response
 
-#def search(term, location):
-#    """Query the Search API by a search term and location.
-#
-#    Args:
-#        term (str): The search term passed to the API.
-#        location (str): The search location passed to the API.
-#
-#    Returns:
-#        dict: The JSON response from the request.
-#    """
-    
- #   url_params = {
-  #      'term': term.replace(' ', '+'),
- #       'location': location.replace(' ', '+'),
- #       'limit': SEARCH_LIMIT
- #   }
- #   print url_params
- #   return request(API_HOST, SEARCH_PATH, url_params=url_params)
-
-
-def search(term, bounds):
+def search(term, location):
     """Query the Search API by a search term and location.
 
     Args:
@@ -115,7 +94,7 @@ def search(term, bounds):
     
     url_params = {
         'term': term.replace(' ', '+'),
-        'bounds': bounds.replace(' ', '%'),
+        'location': location.replace(' ', '+'),
         'limit': SEARCH_LIMIT
     }
     print url_params
@@ -134,19 +113,19 @@ def get_business(business_id):
 
     return request(API_HOST, business_path)
 
-def query_api(term, bounds):
+def query_api(term, location):
     """Queries the API by the input values from the user.
 
     Args:
         term (str): The search term to query.
         location (str): The location of the business to query.
     """
-    response = search(term, bounds)
+    response = search(term, location)
 
     businesses = response.get('businesses')
 
     if not businesses:
-        print u'No businesses for {0} in {1} found.'.format(term, bounds)
+        print u'No businesses for {0} in {1} found.'.format(term, location)
         return
 
     for index in range(len(businesses)):
@@ -157,7 +136,7 @@ def query_api(term, bounds):
 
         response=get_business(business_id)
 
-        print 'Result for business "{0}" found:'.format(business_id)
+        print '\n','\n', index+1, '\n', u'Result for business "{0}" found:'.format(business_id)
         pprint.pprint(response, indent=3)
 
 
@@ -165,12 +144,12 @@ def main():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-q', '--term', dest='term', default=DEFAULT_TERM, type=str, help='Search term (default: %(default)s)')
-    parser.add_argument('-l', '--bounds', dest='bounds', default=bounds, type=int, help='Search bounds(default: %(default)s)')
+    parser.add_argument('-l', '--location', dest='location', default=DEFAULT_LOCATION, type=str, help='Search location (default: %(default)s)')
 
     input_values = parser.parse_args()
 
     try:
-        query_api(input_values.term, input_values.bounds)
+        query_api(input_values.term, input_values.location)
     except urllib2.HTTPError as error:
         sys.exit('Encountered HTTP error {0}. Abort program.'.format(error.code))
 

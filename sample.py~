@@ -31,7 +31,7 @@ DEFAULT_LOCATION = 'San Francisco, CA'
 SEARCH_LIMIT = 5
 SEARCH_PATH = '/v2/search/'
 BUSINESS_PATH = '/v2/business/'
-bounds='37.748060,-122.424754'|'37.768723,-122.406472'
+bounds=37.748060,-122.424754 37.768723,-122.406472
 
 # OAuth credential placeholders that must be filled in by users.
 CONSUMER_KEY = 'YHCrqm_IqYkgHPBqo9EQxg'
