@@ -10,16 +10,16 @@
 -----------------------------------------------------------------------------------------
 * Update
 
-install ```requests```
-install ```requests-oauthlib```
-install ```yelpapi```
+install ```requests```  
+install ```requests-oauthlib```  
+install ```yelpapi```  
 
 
 The steps I took:
 clone the two repos:
-https://github.com/gfairchild/yelpapi
-https://github.com/requests/requests-oauthlib
---can access the examples these two repos provided
+https://github.com/gfairchild/yelpapi  
+https://github.com/requests/requests-oauthlib  
+--can access the examples these two repos provided  
 ```
 sudo apt-get install pip
 sudo pip install requests requests-oauthlib yelpapi
