@@ -15,8 +15,8 @@ install ```requests-oauthlib```
 install ```yelpapi```  
 
 
-The steps I took:
-clone the two repos:
+The steps I took:  
+clone the two repos:  
 https://github.com/gfairchild/yelpapi  
 https://github.com/requests/requests-oauthlib  
 --can access the examples these two repos provided  
