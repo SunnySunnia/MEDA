@@ -10,6 +10,22 @@
 -----------------------------------------------------------------------------------------
 * Update
 
+install ```requests```
+install ```requests-oauthlib```
+install ```yelpapi```
+
+
+The steps I took:
+clone the two repos:
+https://github.com/gfairchild/yelpapi
+https://github.com/requests/requests-oauthlib
+--can access the examples these two repos provided
+```
+sudo apt-get install pip
+sudo pip install requests requests-oauthlib yelpapi
+python mission.py ->mission.txt
+```
+
 [mission.py](mission.py) is the script modified from the example given from the YelpAPI python module.
 User can substitute search terms, search location in text or in lon-lan bounds, and search categories.
 
