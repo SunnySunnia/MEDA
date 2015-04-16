@@ -31,8 +31,3 @@ User can substitute search terms, search location in text or in lon-lan bounds, 
 
 [mission.txt](mission.txt) is the corresponding resulting text file of the test search (can only obtain 20 results in each search)
 
-```
-sdfa
-```
-
-**sdfa**
